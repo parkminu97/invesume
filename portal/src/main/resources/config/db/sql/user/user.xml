@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <select id="adminUserInfo" resultType="hashMap" parameterType="hashMap">
+        select id as user_id
+              ,pwd as user_pwd
+        from   tbl_portal_admin_info
+        where  id = #{userId}
+    </select>
+
+    <select id="portalUserInfo" resultType="hashMap" parameterType="hashMap">
+        select no user_no
+              ,id as user_id
+              ,name as user_name
+              ,pwd as user_pwd
+              ,tel as user_tel
+              ,email as user_email
+        from   tbl_portal_user_info
+        where  delete_dt is null
+        <if test='userId != null and userId != ""'>
+        and    id = #{userId}
+        </if>
+    </select>
+
+    <select id="portalUserList" resultType="hashMap" parameterType="hashMap">
+        select no user_no
+              ,id as user_id
+              ,name as user_name
+              ,pwd as user_pwd
+              ,tel as user_tel
+              ,email as user_email
+              ,(select count(*) from tbl_portal_payment_info where u_no = t.no) as service_cnt
+        from   tbl_portal_user_info t
+        where  delete_dt is null
+        <if test='searchName != null and searchName != ""'>
+        and    name like concat('%', #{searchName}, '%')
+        </if>
+        order by name desc 
+        limit  ${pageRow} offset (${currentPage} - 1) * ${pageRow}
+    </select>
+
+    <select id="portalUserListCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   tbl_portal_user_info
+        where  delete_dt is null
+        <if test='searchName != null and searchName != ""'>
+        and    name like concat('%', #{searchName}, '%')
+        </if>
+    </select>
+
+    <insert id="portalUserInsert" parameterType="hashMap">
+        insert into tbl_portal_user_info(no, id, name, pwd, tel, email, insert_dt)
+        values((select coalesce(max(no),0) + 1 from tbl_portal_user_info), #{id}, #{name}, #{pwd}, #{tel}, #{email}, current_timestamp)
+    </insert>
+
+    <update id="portalUserUpdate" parameterType="hashMap">
+        update tbl_portal_user_info
+        set    name = #{name}
+              ,tel = #{tel}
+              ,email = #{email}
+        where  no = #{no}
+    </update>
+
+    <update id="portalUserPasswordUpdate" parameterType="hashMap">
+        update tbl_portal_user_info
+        set    pwd = #{pwd}
+        where  no = #{no}
+    </update>
+
+    <update id="portalUserDelete" parameterType="hashMap">
+        update tbl_portal_user_info
+        set    delete_dt = current_timestamp
+        where  no = #{no}
+    </update>
+
+    <select id="hotelUserInfo" resultType="hashMap" parameterType="hashMap">
+        select id as user_id
+              ,name as user_name
+              ,pwd as user_pwd
+              ,case when auth='A' then '관리자'
+                    when auth='U' then '사용자'
+                    else ''
+               end as user_auth
+        from   tbl_hotel_user_info
+        where  u_no = #{uNo}
+        <if test='hUserId != null and hUserId != ""'>
+        and    id = #{hUserId}
+        </if>
+    </select>
+
+    <insert id="hotelUserInsert" parameterType="hashMap">
+        insert into tbl_hotel_user_info(u_no, id, name, pwd, auth)
+        values(#{uNo}, #{id}, #{name}, #{pwd}, #{auth})
+    </insert>
+
+    <update id="hotelUserUpdate" parameterType="hashMap">
+        update tbl_hotel_user_info
+        set    name = #{name}
+               <if test='pwd != null and pwd != ""'>
+              ,pwd = #{pwd}
+              </if>
+              ,auth = #{auth}
+        where  u_no = #{uNo}
+        and    id = #{id}
+    </update>
+
+    <delete id="hotelUserDelete" parameterType="hashMap">
+        delete from tbl_hotel_user_info
+        where  u_no = #{uNo}
+        and    id = #{id}
+    </delete>
+
+</mapper>

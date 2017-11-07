@@ -1,0 +1,228 @@
+.titleimg_wrap{
+	width:100%; 
+	background:url(../img/titleimg_bg.jpg) left top repeat-x;
+	height:300px;
+	text-align:center;
+}
+section .article_inpo1{/*호텔측 설명 부분*/
+	width:100%;
+	background:url(../img/products_bg2.png) no-repeat left;
+	 padding: 30px 50px 30px 500px;
+    height: 378px;
+	box-sizing:border-box;
+	margin-bottom:30px;
+}
+section .article_inpo2{/*고객측 설명 부분*/
+	width:100%;
+	background:url(../img/products_bg3.png) no-repeat left;
+	padding: 80px 500px 150px 50px;
+    height: 546px;
+	box-sizing:border-box;
+}
+
+section .article_inpo3{/*고객센터 설명 부분*/
+    width:100%;
+    background:url(../img/c_service_bg.jpg) no-repeat left;
+    padding: 180px 50px 30px 350px;
+    height: 638px;
+    box-sizing:border-box;
+}
+
+section article h3{
+	font-weight:700; 
+	font-size:1.4em;
+	color:#fff;
+	margin-bottom:20px;
+}
+section article p{
+	font-size:0.75em;
+	line-height:1.5em;
+	color:#fff;
+}
+section .service_inpo{/*호텔클릭투콜서비스 안내부분*/
+	overflow:hidden;
+	width:100%;
+}
+section .service_inpo li{
+	float:left;
+	width:25%;
+	padding-top:160px;
+}
+section .service_inpo li:nth-of-type(1){background:url(../img/service_inpo1.png)center top no-repeat;}
+section .service_inpo li:nth-of-type(2){background:url(../img/service_inpo2.png)center top no-repeat;}
+section .service_inpo li:nth-of-type(3){background:url(../img/service_inpo3.png)center top no-repeat;}
+section .service_inpo li:nth-of-type(4){background:url(../img/service_inpo4.png)center top no-repeat;}
+section .service_inpo li p{
+	text-align:center;
+	font-size:1em;
+	font-weight:600;
+	color:#333;
+	line-height:1.5em;
+}
+section .service_inpo li p span{
+	color:#c18a7c;
+	font-size:0.9em;
+}
+
+
+
+/* 상품소개 컨텐츠-------------------------------------------*/
+.product_list{
+	margin:0 auto 60px;
+	padding-left:30px;
+	overflow:hidden;
+	color:#333;
+}
+.product_list .product{
+	width:30%; background:#fff;
+	float:left;
+	margin:0 20px 20px 0 ;
+	box-shadow:0 10px 15px #ccc;
+	position:relative;
+}
+.product_list .product h3.product_title{
+	font-weight:bold; font-size:1.6em; 
+	line-height:1.2em;
+	margin:30px 30px 15px ;
+}
+.product_list .product h3.product_title span{
+	font-weight:100; font-size:16px;
+	line-height:1.2em;
+	float:right;
+}
+.product_list .product ul.product_icon{
+	overflow:hidden; 
+	margin:15px 30px; padding-top:15px;
+	border-top:1px solid #ddd;
+}
+.product_list .product ul.product_icon li{
+	float:left; padding:10px 0 10px 30px; 
+	margin-right:20px; color:#848484;
+	font-size:0.8em;
+}
+.product_list .product ul.product_icon .p_icon_d{background:url(../img/product_icon_d.jpg) left 5px no-repeat;}
+.product_list .product ul.product_icon .p_icon_c{background:url(../img/product_icon_c.jpg) left 8px no-repeat;}
+.product_list .product ul.product_icon .p_icon_c2{background:url(../img/product_icon_c2.jpg) left 8px no-repeat;}
+.product_list .product ul.product_icon .p_icon_p{background:url(../img/product_icon_p.jpg) left 8px no-repeat;}
+.product_list .product ul.product_icon .p_icon_check{background:url(../img/product_icon_check.jpg) left 8px no-repeat;}
+.product_list .product p.product_text{
+	font-size:0.8em; line-height:1.5em;
+	margin:15px 30px 50px;
+}
+.product_list .product button.product_payment{
+	width:50px; height:50px; 
+	overflow:hidden;
+	background:url(../img/icon_payment.jpg) left top no-repeat; text-indent:-500px;
+	border:0 none;
+	position:absolute; bottom:0; right:0;
+	margin:0;
+	cursor:pointer;
+}
+
+section .table_bar{
+    font-size:0.8em;
+    font-weight:700;
+    color:#333;
+    margin-bottom:15px;
+    overflow:hidden;
+}
+section .table_bar .search_box {
+    overflow:hidden;
+    float:left;
+}
+section .table_bar .search_box input{
+    border-radius: 3px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset;
+}
+section .table_bar .search_box input.date_form{
+    background:#fff url(../img/calendar.png) 105px 8px no-repeat;
+    width:110px;
+}
+section .table_bar .search_box .search_bt{
+    background:#3d586d url(../img/i_search.png)5px 5px no-repeat; 
+    border:0px; 
+    width:27px; 
+    height:27px;
+}
+section .table_bar .search_box>select{
+    border-radius: 3px;
+    height: 27px;
+    border: 1px solid #ccc;
+}
+section .table_bar .page_list_wrap{
+    overflow:hidden;
+    float:right;
+    padding-left:30px;
+    background:url(../img/i_list_n.png)left 5px no-repeat;
+}
+section .table_bar .page_list_wrap .page_list_n{
+    border-radius: 3px;
+    height: 27px;
+    border: 1px solid #ccc;
+    float:right;
+}
+
+section .r_table{
+    border:1px solid #c9caca;
+    width:100%;
+    font-size:0.75em;
+    background:#fff;
+}
+section .r_table tr{ 
+    border-bottom:1px solid #e2e2e2;
+}
+section .r_table thead tr th{
+    vertical-align:middle; 
+    height:40px; 
+    background:#c68d7f;
+    color:#fff;
+    font-weight:600;
+    border-right:1px solid #e2e2e2;
+}
+section .r_table tbody tr:hover td{
+    background:#f4f4f4;
+    height:40px;
+}
+section .r_table tbody tr td{
+    vertical-align:middle;
+    color:#7a7a7a;
+    text-align:center;
+    border-right:1px solid #e2e2e2;
+    height:40px;
+}
+
+ /* 페이지넘버 */
+section .page_num{
+    margin:15px auto; 
+    width:120px;
+    overflow:hidden;
+}
+section .page_num li{
+    float:left;
+}
+section .page_num li.num_choice a{
+    color:#fff;
+    background:#555;
+    
+}
+section .page_num li a{
+    display:inline-block; 
+    width:20px;
+    text-align:center;
+    line-height:20px;
+    border-radius:5px;
+    font-size:0.8em;
+    font-weight:700;
+}
+section .page_num .prev{}
+section .page_num .prev a{
+    text-indent:-5000px;
+    background:url(../img/page_prev.png)left 4px no-repeat;
+}
+section .page_num .next{}
+section .page_num .next a{
+    text-indent:-5000px;
+    background:url(../img/page_next.png)left 4px no-repeat;
+}

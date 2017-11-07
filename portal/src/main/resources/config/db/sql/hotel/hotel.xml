@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotel">
+    <select id="hotelInfo" resultType="hashMap" parameterType="hashMap">
+        select *
+        from   tbl_hotel_info
+        where  u_no = #{uNo}
+    </select>
+
+    <insert id="hotelInfoInsert" parameterType="hashMap">
+        insert into tbl_hotel_info(u_no, hotel_name, rep_email, rep_tel, country, hotel_addr1, hotel_addr2, insert_dt)
+        values(#{uNo}, #{hotel_name}, #{rep_email}, #{rep_tel}, #{country}, #{hotel_addr1}, #{hotel_addr2}, current_timestamp)
+    </insert>
+
+    <update id="hotelInfoUpdate" parameterType="hashMap">
+        update tbl_hotel_info
+        set    hotel_name = #{hotel_name}
+              ,rep_email = #{rep_email}
+              ,rep_tel = #{rep_tel}
+              ,country = #{country}
+              ,hotel_addr1 = #{hotel_addr1}
+              ,hotel_addr2 = #{hotel_addr2}
+              ,update_dt = current_timestamp
+        where  u_no = #{uNo}
+    </update>
+
+    <select id="hotelRoomList" resultType="hashMap" parameterType="hashMap">
+        select u_no, no, room_name, room_money, room_people_rule, room_position, room_bed_type, room_comp, room_info, room_service
+              ,case when room_use_yn = 'Y' then '사용' else '미사용' end room_use_yn
+              ,(select room_img from tbl_hotel_room_img where u_no = t.u_no and ri_no = t.no and no = t.rep_room_img) as rep_room_img
+        from   tbl_hotel_room_info t
+        where  u_no = #{uNo}
+        <if test='searchRoomName != null and searchRoomName != ""'>
+        and    room_name like concat('%', #{searchRoomName}, '%')
+        </if>
+        <if test='searchRoomUseYn != null and searchRoomUseYn != ""'>
+        and    room_use_yn = #{searchRoomUseYn}
+        </if>
+        order by room_name 
+        limit  ${pageRow} offset (${currentPage} - 1) * ${pageRow}
+    </select>
+
+    <select id="hotelRoomListCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   tbl_hotel_room_info
+        where  u_no = #{uNo}
+        <if test='searchRoomName != null and searchRoomName != ""'>
+        and    room_name like concat('%', #{searchRoomName}, '%')
+        </if>
+        <if test='searchRoomUseYn != null and searchRoomUseYn != ""'>
+        and    room_use_yn = #{searchRoomUseYn}
+        </if>
+    </select>
+
+    <select id="hotelRoomView" resultType="hashMap" parameterType="hashMap">
+        select u_no, no, room_name, room_use_yn, room_money, room_people_rule, room_position, room_bed_type, room_comp, room_info, room_service, rep_room_img
+        from   tbl_hotel_room_info
+        where  u_no = #{uNo}
+        and    no = cast(#{no} as bigint)
+    </select>
+
+    <insert id="hotelRoomInsert" parameterType="hashMap">
+        insert into tbl_hotel_room_info(u_no, no, room_name, room_use_yn, room_money, room_people_rule, room_position, room_bed_type, room_comp, room_info, room_service, insert_dt)
+        values(#{uNo}, (select coalesce(max(no),0) + 1 from tbl_hotel_room_info), #{room_name}, #{room_use_yn}, #{room_money}, #{room_people_rule}, #{room_position}, #{room_bed_type}, #{room_comp}, #{room_info}, #{room_service}, current_timestamp)
+    </insert>
+
+    <update id="hotelRoomUpdate" parameterType="hashMap">
+        update tbl_hotel_room_info
+        set    room_name = #{room_name}
+              ,room_use_yn = #{room_use_yn}
+              ,room_money = #{room_money}
+              ,room_people_rule = #{room_people_rule}
+              ,room_position = #{room_position}
+              ,room_bed_type = #{room_bed_type}
+              ,room_comp = #{room_comp}
+              ,room_info = #{room_info}
+              ,room_service = #{room_service}
+              ,update_dt = current_timestamp
+        where  u_no = #{uNo}
+        and    no = cast(#{no} as bigint)
+    </update>
+
+    <delete id="hotelRoomDelete" parameterType="hashMap">
+        delete from tbl_hotel_room_info
+        where  u_no = #{uNo}
+        and    no = cast(#{no} as bigint)
+    </delete>
+
+    <select id="hotelRoomImgList" resultType="hashMap" parameterType="hashMap">
+        select u_no, ri_no, no, room_img
+        from   tbl_hotel_room_img
+        where  u_no = #{uNo}
+        and    ri_no = cast(#{riNo} as bigint)
+    </select>
+
+    <insert id="hotelRoomImgInsert" parameterType="hashMap">
+        insert into tbl_hotel_room_img(u_no, ri_no, no, room_img)
+        values(#{uNo}, cast(#{riNo} as bigint), (select coalesce(max(no),0) + 1 from tbl_hotel_room_img), #{roomImg})
+    </insert>
+
+    <delete id="hotelRoomImgDelete" parameterType="hashMap">
+        delete from tbl_hotel_room_img
+        where  u_no = #{uNo}
+        and    ri_no = cast(#{riNo} as bigint)
+        and    no = cast(#{no} as bigint)
+    </delete>
+
+    <update id="hotelRoomRepImgUpdate" parameterType="hashMap">
+        update tbl_hotel_room_info
+        set    rep_room_img = cast(#{repRoomImg} as bigint)
+        where  u_no = #{uNo}
+        and    no = cast(#{no} as bigint)
+    </update>
+
+    <update id="hotelRepImgUpdate" parameterType="hashMap">
+        update tbl_hotel_info
+        set    rep_img = #{repImg}
+        where  u_no = #{uNo}
+    </update>
+
+    <select id="hotelMenuList" resultType="hashMap" parameterType="hashMap">
+        select no, menu_name, menu_desc
+        from   tbl_hotel_menu
+    </select>
+
+    <update id="hotelMenuUpdate" parameterType="hashMap">
+        update tbl_hotel_info
+        set    use_menu = #{useMenu}
+        where  u_no = #{uNo}
+    </update>
+
+    <select id="guestUserCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   tbl_hotel_guest_user_info
+    </select>
+
+    <select id="custReservationCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   reservation
+    </select>
+
+</mapper>

@@ -1,0 +1,176 @@
+
+
+
+.section_wrap section .pay_wrap{/*왼쪽오른쪽 전체를 감싸는 부모*/
+	overflow:hidden;
+	height:100%;
+	background:#13303e;
+}
+
+.section_wrap section .pay_wrap .pay_left{
+	float:left; background:#ecedf1;
+	width:600px;
+	padding-right:20px;
+}
+.section_wrap section .pay_wrap .pay_left .pay_left_top{}/*radio부분*/
+.section_wrap section .pay_wrap .pay_left .pay_left_top label.pay_radio{
+	font-size:0.9em;
+	font-weight:700;
+	color:#333;
+}
+.section_wrap section .pay_wrap .pay_left table{/*테이블부분*/
+	width: 100%;
+    height: 100px;
+    border-top: 4px solid #3b566b;
+    border-bottom: 4px solid #3b566b;
+    font-size: 0.9em;
+    box-sizing: border-box;
+    color: #666;
+	margin:20px 0;
+}
+.section_wrap section .pay_wrap .pay_left table tr{
+	border-bottom:1px solid #b5b6b9;
+}
+.section_wrap section .pay_wrap .pay_left table tr th{
+	vertical-align:middle;
+	padding:20px;
+	font-weight:bold;
+	background:#dce0e6;
+	width:130px;
+	box-sizing:border-box;
+}
+.section_wrap section .pay_wrap .pay_left table tr td{
+	vertical-align:middle;
+	padding-left:20px;
+}
+.section_wrap section .pay_wrap .pay_left table tr td select{
+	border:1px solid #c9caca;
+	border-radius:3px;
+	padding:5px ;
+	width:150px;
+}.section_wrap section .pay_wrap .pay_left table tr td button{
+	border-radius:3px;
+	border:0;
+	color:#fff;
+	padding:5px ;
+	font-weight:bold;
+	background:#9fa0a0;
+}
+.section_wrap section .pay_wrap .pay_left .pay_check{
+	padding:15px;
+	background:#dce0e6;
+	margin-bottom:20px;
+}
+.section_wrap section .pay_wrap .pay_left .pay_check label{
+	font-size: 0.9em;
+	color:#333;
+	width:100%;
+}/*결제대행체크*/
+
+.section_wrap section .pay_wrap .pay_left .pay_t{
+	background:#dce0e6;
+	padding:15px 15px 15px 0;
+	overflow:hidden;
+	color: #666;
+}
+.section_wrap section .pay_wrap .pay_left .pay_t .pay_t_title{
+	width:130px;
+	box-sizing:border-box;
+	float:left;
+	text-align:center;
+	font-weight:bold;
+	font-size: 0.9em;
+}
+.section_wrap section .pay_wrap .pay_left .pay_t .pay_t_wrap{overflow:hidden;}
+.section_wrap section .pay_wrap .pay_left .pay_t .pay_t_wrap label{
+	font-size: 0.9em;
+	color:#333;
+	width:100%;
+	
+}
+.section_wrap section .pay_wrap .pay_left .pay_t .pay_t_wrap .pay_t_text{
+	overflow-y: scroll;
+	line-height:1.5em;
+	background:#fff;
+	height:100px;
+	border:1px solid #c9caca;
+	border-radius:3px;
+	padding:10px;
+	box-sizing:border-box;
+	font-size: 0.75em;
+	margin-bottom:10px;
+}
+
+.section_wrap section .pay_wrap .pay_left .pay_n{
+	float:right;
+}
+.section_wrap section .pay_wrap .pay_left .pay_n a{
+	display:inline-block;
+	padding:8px;
+	color:#fff;
+	background:#333; 
+	margin-left:10px;
+	border-radius:5px;
+	font-size:0.8em;
+	font-weight:bold;
+	margin:30px 0;
+}
+
+
+
+
+.section_wrap section .pay_wrap .pay_right{
+	float:right; 
+	background:#13303e;
+	width:280px;
+	box-sizing:border-box;
+	padding:50px 30px;
+}
+.section_wrap section .pay_wrap .pay_right h3{
+	color:#d4b290;
+	font-size:1.1em;
+	font-weight:700;
+	margin-bottom:20px;
+}
+
+.section_wrap section .pay_wrap .pay_right table{
+	color:#fff;
+	border-bottom:1px solid #eee;
+	font-size:0.8em;
+	width:100%;
+	margin-bottom:20px;
+}
+.section_wrap section .pay_wrap .pay_right table tr{
+	height:40px;
+}
+.section_wrap section .pay_wrap .pay_right table tr th{
+	font-weight:bold;
+}
+.section_wrap section .pay_wrap .pay_right table tr td{
+	text-align:right;
+}
+.section_wrap section .pay_wrap .pay_right .pay_f{
+	text-align:right;
+	color:#d4b290;
+	line-height:2em;
+	font-weight:700;
+}
+.section_wrap section .pay_wrap .pay_right .pay_f span{
+	color:#fff;font-size:1.5em;
+}
+
+.section_wrap section .pay_wrap .pay_right .pay_y{
+}
+.section_wrap section .pay_wrap .pay_right .pay_y a{
+	display:block;
+	padding:8px;
+	color:#fff;
+	background:#c18a7c; 
+	margin-left:10px;
+	border-radius:5px;
+	font-size:1.2em;
+	font-weight:700;
+	margin-top:30px;
+	text-align:center;
+	line-height:2em;
+}
