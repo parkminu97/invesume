@@ -1,0 +1,146 @@
+/*@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);*/
+body{
+	width:100%;
+	height:100%;
+	font-size:16px;
+	font-family: "NanumGothic", NanumG, Malgun Gothic, "맑은 고딕", "돋움", Dotum, "굴림", Gulim;
+	min-width:900px;
+	background:#edeef2;
+}
+/* 헤더 시작*/
+header{
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	/* position:fixed; */
+	top:0;
+	background:#323232;
+	height:60px;
+	box-sizing:border-box;
+}
+header h1{float:left;}
+header h1 img{
+	padding:14px 0 0 20px;
+}
+header .top_menu{
+	float:left; 
+	font-weight:600;
+	width:100%;
+}
+header .top_menu .main_menu{
+	float:left;
+	margin-left:30px;
+}
+header .top_menu .main_menu li{
+	float:left; 
+	border-radius:15px;
+}
+header .top_menu .main_menu li a{
+	color:#fff;
+	display:block;
+	line-height:60px;
+	padding:0 30px;
+}
+
+ header .top_menu .user_menu{
+	 float:right;
+}
+header .top_menu .user_menu li{
+	float:left;
+	line-height:60px;
+	background:#d4b290;
+	
+}
+header .top_menu .user_menu li a{
+	color:#333;
+	font-size:0.75em;
+	padding:0 20px;
+}
+header .top_menu .user_menu li:nth-of-type(1) a{border-right:1px solid #bf956f;}
+/* 헤더 끝*/
+
+/* 슬라이드 부분 */
+.slide_wrap{margin-bottom:10px;}
+
+/* 컨텐츠부분 */
+.section_wrap{
+	width:100%;
+	background:#edeef2;
+}
+.section_wrap section{
+	width:900px; 
+	margin:0 auto;
+	overflow:hidden;
+}
+.content_title{
+	background:url(../img/line_bg.jpg) left bottom repeat-x;
+	margin:30px 0;
+	overflow:hidden;
+}
+.content_title h2{
+	color:#333;
+	display:inline-block;
+	font-size:1.2em;
+	line-height:3em;
+	font-weight:700;
+}
+.content_title p{
+	float:right;
+	font-size:0.75em;
+	padding:0 0 0 20px;
+	letter-spacing:-0.04em;
+	background:url(../img/path_home.gif) no-repeat left;
+	height:14px;
+	margin-top:25px;
+	color:#666;
+}
+.section_wrap section .method_step{
+	width:100%;
+	overflow:hidden;
+}
+.section_wrap section .method_step li{
+	width:50%;
+	float:left;
+	padding:0 20px;
+	box-sizing:border-box;
+}
+.section_wrap section .method_step li img{width:100%;}
+
+
+
+
+
+/* 하단푸터 시작 */
+footer{
+	background:#fff;
+}
+footer .footer_info{
+	overflow:hidden;
+	padding:25px;
+}
+footer .footer_info li{
+	float:left; 
+	padding-left:30px; 
+	border-left:1px solid #ddd; 
+	margin-left:30px;
+}
+footer .footer_info li:nth-of-type(1){
+	padding:0; border:0; margin:0;
+}
+footer .footer_info li img{margin:0 20px;}
+footer .footer_info li p{}
+footer .footer_info li p span{color:#444; font-weight:bold; line-height:2em;}
+footer p{
+	font-size:0.8em;
+	letter-spacing:;
+	line-height:1.4em;
+	color:#888;
+}
+footer>p{
+	padding:15px 25px; 
+	border-top:1px solid #ddd;
+	background:#c18a7c;
+	color:#fff;
+	text-align:center;
+}
+/* 하단푸터 끝*/

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+    <select id="boardList" resultType="hashMap" parameterType="hashMap">
+        select no, u_no, subject, content, to_char(insert_dt, 'yyyy.mm.dd') as insert_dt, event_start_date, event_end_date
+        from   tbl_board
+        where  board_gubun = #{board_gubun}
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+        <if test='searchSubject != null and searchSubject != ""'>
+        and    subject like concat('%', #{searchSubject}, '%')
+        </if>
+        order by no desc 
+        limit  ${pageRow} offset (${currentPage} - 1) * ${pageRow}
+    </select>
+
+    <select id="boardListCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   tbl_board
+        where  board_gubun = #{board_gubun}
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+        <if test='searchSubject != null and searchSubject != ""'>
+        and    subject like concat('%', #{searchSubject}, '%')
+        </if>
+    </select>
+
+    <select id="boardView" resultType="hashMap" parameterType="hashMap">
+        select no, subject, content, to_char(insert_dt, 'yyyy.mm.dd') as insert_dt, event_start_date, event_end_date
+        from   tbl_board
+        where  board_gubun = #{board_gubun}
+        and    no = cast(#{no} as bigint)
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+    </select>
+
+    <insert id="boardInsert" parameterType="hashMap">
+        insert into tbl_board(no, u_no, board_gubun, subject, content, event_start_date, event_end_date, rep_img, read_hit, insert_dt)
+        values((select coalesce(max(no),0) + 1 from tbl_board), #{uNo}, #{board_gubun}, #{subject}, #{content}, #{event_start_date}, #{event_end_date}, #{rep_img}, 0, current_timestamp)
+    </insert>
+
+    <update id="boardUpdate" parameterType="hashMap">
+        update tbl_board
+        set    subject = #{subject}
+              ,content = #{content}
+              ,event_start_date = #{event_start_date}
+              ,event_end_date = #{event_end_date}
+               <if test='rep_img != null and rep_img != ""'>
+              ,rep_img = #{rep_img}
+               </if>
+        where  board_gubun = #{board_gubun}
+        and    no = cast(#{no} as bigint)
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+    </update>
+
+    <update id="boardReadHitUpdate" parameterType="hashMap">
+        update tbl_board
+        set    read_hit = read_hit + 1
+        where  board_gubun = #{board_gubun}
+        and    no = cast(#{no} as bigint)
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+    </update>
+
+    <delete id="boardDelete" parameterType="hashMap">
+        delete from tbl_board
+        where  board_gubun = #{board_gubun}
+        and    no = cast(#{no} as bigint)
+        <if test='uNo != null and uNo != ""'>
+        and    u_no = cast(#{uNo} as bigint)
+        </if>
+    </delete>
+
+</mapper>
