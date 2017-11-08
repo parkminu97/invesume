@@ -1,6 +1,6 @@
 ![hcall logo](/images/hotelclicktocall.png)
 
-# What is tha hcall service
+# What is the hcall service
 The hcall service is for non-English speaking hotel guests
 
 # License
