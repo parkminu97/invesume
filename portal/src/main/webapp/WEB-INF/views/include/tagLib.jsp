@@ -18,5 +18,6 @@
     <c:set var="serverPort" scope="request" value=":${pageContext.request.serverPort}" />
 </c:if>
 
+1
 <c:set var="httpCtxPath" scope="request">${ctxPath}</c:set>
 <c:set var="httpCtxPath2" scope="request">${pageContext.request.scheme}://${pageContext.request.serverName}${serverPort}${ctxPath}</c:set>
