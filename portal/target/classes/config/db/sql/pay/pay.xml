@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pay">
+    <insert id="productPayment" parameterType="hashMap">
+        insert into tbl_portal_payment_info(u_no, no, util_service, util_service_name, pay_day, pay_type, pay_money, use_start_date, use_end_date, use_yn, insert_dt)
+        values(#{uNo}, (select coalesce(max(no),0) + 1 from tbl_portal_payment_info), #{utilService}, #{utilServiceName}, current_timestamp, #{payType}, #{payMoney}, #{useStartDate}, #{useEndDate}, 'Y', current_timestamp)
+    </insert>
+
+    <select id="useProductList" resultType="hashMap" parameterType="hashMap">
+        select util_service
+        from   tbl_portal_payment_info
+		where  u_no = #{uNo}
+		and    to_char(current_date,'yyyy.mm.dd') between use_start_date and use_end_date
+		and    use_yn = 'Y'
+    </select>
+
+    <select id="productPaymentList" resultType="hashMap" parameterType="hashMap">
+        select t1.u_no, t1.no, util_service, util_service_name, to_char(pay_day,'yyyy.mm.dd') as pay_day, use_start_date, use_end_date, pay_money
+              ,case when pay_type = '1' then '카드결제'
+                    when pay_type = '2' then '실시간 계좌이체'
+                    when pay_type = '3' then '무통장 입금'
+                    when pay_type = '4' then '휴대폰 결제'
+               end as pay_type
+              ,case when use_yn = 'Y' then '이용중' else '완료' end as use_yn
+              ,t2.name as pay_user_name
+        from   tbl_portal_payment_info t1, tbl_portal_user_info t2
+        where  t1.u_no = t2.no
+        and    t2.delete_dt is null
+        <if test='admin != null and admin == "N"'>
+        and    t1.u_no = #{uNo}
+        </if>
+        <if test='searchUtilService != null and searchUtilService != ""'>
+        and    t1.util_service = #{searchUtilService}
+        </if>
+        <if test='searchPayUserName != null and searchPayUserName != ""'>
+        and    t2.name like concat('%', #{searchPayUserName}, '%')
+        </if>
+        order by t1.insert_dt desc 
+        limit  ${pageRow} offset (${currentPage} - 1) * ${pageRow}
+    </select>
+
+    <select id="productPaymentListCount" resultType="int" parameterType="hashMap">
+        select count(*) as cnt
+        from   tbl_portal_payment_info t1, tbl_portal_user_info t2
+        where  t1.u_no = t2.no
+        and    t2.delete_dt is null
+        <if test='admin != null and admin == "N"'>
+        and    t1.u_no = #{uNo}
+        </if>
+        <if test='searchUtilService != null and searchUtilService != ""'>
+        and    t1.util_service = #{searchUtilService}
+        </if>
+        <if test='searchPayUserName != null and searchPayUserName != ""'>
+        and    t2.name like concat('%', #{searchPayUserName}, '%')
+        </if>
+    </select>
+
+    <update id="serviceEndUpdate" parameterType="hashMap">
+        update tbl_portal_payment_info
+        set    use_yn = 'N'
+        where  to_char(current_date,'yyyy.mm.dd') > use_end_date
+    </update>
+
+</mapper>

@@ -12,6 +12,7 @@
                 <c:if test="${sessionScope.userInfo eq null}">
                 <li><a href="${httpCtxPath}/portalUserInsert.action" target="_self">회원가입</a></li>
                 <li><a href="${httpCtxPath}/login.action" target="_self">로그인</a></li>
+                <li><a href="${httpCtxPath}/payTest.action" target="_self">결제테스트</a></li>
                 </c:if>
                 <c:if test="${sessionScope.userInfo ne null}">
                 <c:if test="${sessionScope.userInfo.admin eq 'Y'}">

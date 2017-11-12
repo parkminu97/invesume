@@ -34,9 +34,9 @@
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/hotel" />
-        <property name="username" value="postgres" />
-        <property name="password" value="~cross007" />
+        <property name="url" value="jdbc:postgresql://52.231.27.244:5432/hotels" />
+        <property name="username" value="ivs" />
+        <property name="password" value="exitem08" />
         <property name="initialSize" value="10" />
         <property name="maxActive" value="100" />
         <property name="minIdle" value="10" />
@@ -60,9 +60,9 @@
 
     <bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432/hotels_cust" />
-        <property name="username" value="postgres" />
-        <property name="password" value="~cross007" />
+        <property name="url" value="jdbc:postgresql://52.231.25.211:5432/hotels_cust" />
+        <property name="username" value="ivs" />
+        <property name="password" value="exitem08" />
         <property name="initialSize" value="10" />
         <property name="maxActive" value="100" />
         <property name="minIdle" value="10" />

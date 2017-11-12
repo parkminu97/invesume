@@ -122,4 +122,9 @@ public class MainController {
         return "/main/boardView";
     }
 
+    @RequestMapping(value="payTest.action")
+    public String payTest(ModelMap map, HttpServletRequest request, @RequestParam Map<String,Object> params) {
+    	map.put("params", params);
+        return "/pg/payTest";
+    }
 }
